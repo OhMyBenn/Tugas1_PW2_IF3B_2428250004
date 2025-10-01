@@ -13,7 +13,7 @@ class ProdukController extends Controller
     public function index()
     {
         $produk = Produk::with('kategori')->get();
-        return response()->json($produks, 200);
+        return response()->json($produk, 200);
     }
 
     /**

@@ -14,7 +14,7 @@ class KategoriController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        return response()->json($kategoris, 200);
+        return response()->json($kategori, 200);
     }
 
     /**
