@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class KategoriController extends Controller
 {
@@ -12,7 +13,8 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        $kategoris = Kategori::all();
+        return response()->json($kategoris, 200);
     }
 
     /**
@@ -28,15 +30,40 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate(
+            [
+            'nama' => 'required|unique:kategoris,nama',
+            'kode' => 'required',
+            ]
+        );
+
+        $kategori = Kategori::create($validate); //Simpan data ke database
+        if($kategori){
+            $data['success'] = true;
+            $data['message'] = " Data kategori berhasil disimpan";
+            $data['data'] = $kategori;
+            return response()->json($kategori, 201);
+        } 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Harga $harga)
+    public function show(string $id)
     {
-        //
+        $kategori = Kategori::with('products')->find($id);
+
+    if ($kategori) {
+        $data['success'] = true;
+        $data['message'] = " Detail data kategori";
+        $data['data'] = $kategori;
+        return response()->json($data, 200);
+    } else {
+        return response()->json([
+            'message' => 'Kategori tidak ditemukan'
+        ], 404);
+
+        }
     }
 
     /**
@@ -52,14 +79,46 @@ class KategoriController extends Controller
      */
     public function update(Request $request, Harga $harga)
     {
-        //
-    }
-
+        //Cari data Kategori berdasarkan ID
+        $kategori = Kategori::find($harga->id);
+        if($kategori){
+            $validate = $request->validate(
+                [
+                    'nama' => 'required',
+                    'kode' => 'required',
+                ]
+        );
+        //Update data Kategori
+        Kategori::where('id', $id)->update($validate);
+        //Mengambil data Kategori yang telah diupdate
+        $kategori = Kategori::find($id);
+        if ($fakultas) {
+            $data['success'] = true;
+            $data['message'] = "Data kategori berhasil diupdate";
+            $data['data'] = $kategori;
+            return response()->json($data, 201);
+        } else {
+            $data['success'] = false;
+            $data['message'] = "Data kategori gagal diupdate";
+            return response()->json($data, 500);
+        }
+        }
+    }   
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Harga $harga)
     {
-        //
+        $kategori = Kategori::find($harga->id);
+        if($kategori){
+            $kategori->delete();
+            $data['success'] = true;
+            $data['message'] = "Data kategori berhasil dihapus";
+            return response()->json($data, Response::HTTP_OK);
+        } else {
+            $data['success'] = false;
+            $data['message'] = "Data kategori gagal dihapus";
+            return response()->json($data, Response::HTTP_NOT_FOUND);
+        }
     }
 }
