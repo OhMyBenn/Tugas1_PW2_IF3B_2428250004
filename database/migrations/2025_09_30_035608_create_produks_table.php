@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('produks', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 50)->unique();
-            $table->char('kode', 10)->unique();
+            $table->char('kode', 5)->unique();
             $table->foreignId('kategori_id')->constrained();
             $table->timestamps();
         });
