@@ -13,7 +13,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategoris = Kategori::all();
+        $kategori = Kategori::all();
         return response()->json($kategoris, 200);
     }
 
@@ -51,7 +51,7 @@ class KategoriController extends Controller
      */
     public function show(string $id)
     {
-        $kategori = Kategori::with('products')->find($id);
+        $kategori = Kategori::with('produks')->find($id);
 
     if ($kategori) {
         $data['success'] = true;
