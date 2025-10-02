@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProdukController extends Controller
 {
@@ -106,18 +108,22 @@ class ProdukController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Produk $produk)
-    {
-        $produk = Produk::where('id', $id);
-        if($produk){
-            $produk->delete();
-            $data['success'] = true;
-            $data['message'] = " Data produk berhasil dihapus";
-            return response()->json($data, Response::HTTP_OK);
-        } else {
-            $data['success'] = false;
-            $data['message'] = " Data produk tidak ditemukan";
-            return response()->json($data, Response::HTTP_NOT_FOUND);
-        }
+    public function destroy($id)
+{
+    $produk = Produk::find($id);
+
+    if ($produk) {
+        $produk->delete();
+        return response()->json([
+            'success' => true,
+            'message' => "Data produk berhasil dihapus"
+        ], Response::HTTP_OK);
+    } else {
+        return response()->json([
+            'success' => false,
+            'message' => "Data produk tidak ditemukan"
+        ], Response::HTTP_NOT_FOUND);
     }
+}
+
 }
