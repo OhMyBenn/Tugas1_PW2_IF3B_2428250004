@@ -12,17 +12,15 @@ use Illuminate\Http\Response;
 use illuminate\Container\Attributes\Auth;
 
 
+Route::get('/kategori', [KategoriController::class,'index']);
 Route::post('/kategori', [KategoriController::class, 'store']);
 Route::patch('/kategori/{id}', [KategoriController::class, 'update']);
 Route::delete('/kategori/{id}', [KategoriController::class, 'destroy']);
 
+Route::get('/produk', [ProdukController::class,'index']);
 Route::post('/produk', [ProdukController::class, 'store']);
 Route::patch('/produk/{id}', [ProdukController::class, 'update']);
 Route::delete('/produk/{id}', [ProdukController::class, 'destroy']);
-
-
-Route::get('/kategori', [KategoriController::class,'index']);
-Route::get('/produk', [ProdukController::class,'index']);
 
 Route::post('/register', [AuthController::class,'register']);
 Route::post('/login', [AuthController::class, 'login']);
