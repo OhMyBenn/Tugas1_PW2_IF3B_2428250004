@@ -69,7 +69,7 @@ class KategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Harga $harga)
+    public function edit(Kategori $harga)
     {
         //
     }
@@ -77,10 +77,10 @@ class KategoriController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Harga $harga)
+    public function update(Request $request, Kategori $id)
     {
         //Cari data Kategori berdasarkan ID
-        $kategori = Kategori::find($harga->id);
+        $kategori = Kategori::find($id->id);
         if($kategori){
             $validate = $request->validate(
                 [
@@ -92,7 +92,7 @@ class KategoriController extends Controller
         Kategori::where('id', $id)->update($validate);
         //Mengambil data Kategori yang telah diupdate
         $kategori = Kategori::find($id);
-        if ($fakultas) {
+        if ($kategori) {
             $data['success'] = true;
             $data['message'] = "Data kategori berhasil diupdate";
             $data['data'] = $kategori;
@@ -107,7 +107,7 @@ class KategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Harga $harga)
+    public function destroy(Kategori $harga, $id)
     {
         $kategori = Kategori::find($harga->id);
         if($kategori){
