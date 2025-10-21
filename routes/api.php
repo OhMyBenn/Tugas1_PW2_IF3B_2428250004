@@ -15,6 +15,7 @@ use illuminate\Container\Attributes\Auth;
 Route::get('/kategori', [KategoriController::class,'index']);
 Route::post('/kategori', [KategoriController::class, 'store']);
 Route::patch('/kategori/{id}', [KategoriController::class, 'update']);
+Route::get('/kategori/{id}', [KategoriController::class, 'show']);
 Route::delete('/kategori/{id}', [KategoriController::class, 'destroy']);
 
 Route::get('/produk', [ProdukController::class,'index']);
