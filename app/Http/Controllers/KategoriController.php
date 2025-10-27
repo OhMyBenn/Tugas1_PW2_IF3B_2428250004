@@ -83,7 +83,6 @@ class KategoriController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'kode' => 'nullable|string|max:10',
-            'kategori_id' => 'nullable|integer'
         ]);
 
     try {
