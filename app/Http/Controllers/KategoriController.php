@@ -77,7 +77,7 @@ class KategoriController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kategori $id)
+    public function update(Request $request, Kategori $kategori)
     {
         //Cari data Kategori berdasarkan ID
         $kategori = Kategori::find($id->id);
