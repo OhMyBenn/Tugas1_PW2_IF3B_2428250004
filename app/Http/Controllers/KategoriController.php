@@ -85,7 +85,6 @@ class KategoriController extends Controller
             $validate = $request->validate(
                 [
                     'nama' => 'required',
-                    'kode' => 'required',
                 ]
         );
         //Update data Kategori
