@@ -81,8 +81,8 @@ class KategoriController extends Controller
     {
     // Validasi input dari request
         $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'kode' => 'nullable|string|max:10',
+            'nama' => 'required',
+            'kode' => 'required',
         ]);
 
     try {
