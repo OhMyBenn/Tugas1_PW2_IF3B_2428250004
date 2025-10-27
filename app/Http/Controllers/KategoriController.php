@@ -79,30 +79,30 @@ class KategoriController extends Controller
      */
     public function update(Request $request, Kategori $kategori)
     {
-        //Cari data Kategori berdasarkan ID
-        $kategori = Kategori::find($id->id);
-        if($kategori){
-            $validate = $request->validate(
-                [
-                    'nama' => 'required',
-                ]
-        );
-        //Update data Kategori
-        Kategori::where('id', $id)->update($validate);
-        //Mengambil data Kategori yang telah diupdate
-        $kategori = Kategori::find($id);
-        if ($kategori) {
-            $data['success'] = true;
-            $data['message'] = "Data kategori berhasil diupdate";
-            $data['data'] = $kategori;
-            return response()->json($data, 201);
-        } else {
-            $data['success'] = false;
-            $data['message'] = "Data kategori gagal diupdate";
-            return response()->json($data, 500);
+    // Validasi input dari request
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'kode' => 'nullable|string|max:10',
+            'kategori_id' => 'nullable|integer'
+        ]);
+
+    try {
+        // Update data kategori berdasarkan hasil validasi
+        $kategori->update($validatedData);
+
+        return response()->json([
+            'message' => 'Kategori berhasil diperbarui',
+            'data' => $kategori
+        ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+             'message' => 'Terjadi kesalahan saat memperbarui kategori',
+                'error' => $e->getMessage()
+            ], 500);
         }
-        }
-    }   
+    }
+
     /**
      * Remove the specified resource from storage.
      */
