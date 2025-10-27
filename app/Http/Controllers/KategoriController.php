@@ -13,7 +13,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori::all() -> get();
+        $kategori = Kategori::all();
         return response()->json($kategori, 200);
     }
 
