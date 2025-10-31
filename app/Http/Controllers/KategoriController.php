@@ -82,7 +82,6 @@ class KategoriController extends Controller
     // Validasi input dari request
         $validate = $request->validate([
             'nama' => 'required|unique:kategoris,nama',
-            'kode' => 'required',
         ]);
 
         // Cari data kategori berdasarkan ID
