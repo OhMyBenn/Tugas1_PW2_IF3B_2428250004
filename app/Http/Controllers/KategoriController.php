@@ -89,13 +89,13 @@ class KategoriController extends Controller
         $kategori = Kategori::find($id);
         if ($kategori) {
             $data['success'] = true;
-            $data['message'] = " Detail data kategori";
+            $data['message'] = "Kategori berhasil diupdate";
             $data['data'] = $kategori;
-        return response()->json($data, 200);
+        return response()->json($data, Response::HTTP_OK);
         } else {
-            return response()->json([
-            'message' => 'Kategori tidak ditemukan'
-            ], 404);
+            $data['success'] = false;
+            $data['message'] = "Kategori tidak ditemukan";
+            return response()->json($data, Response::HTTP_NOT_FOUND);
         }
     }
     
