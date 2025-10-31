@@ -86,9 +86,7 @@ class KategoriController extends Controller
 
         // Cari data kategori berdasarkan ID
         $kategori = Kategori::find($id);
-
         $kategori->update($validate);
-
         if ($kategori) {
             $data['success'] = true;
             $data['message'] = "Kategori berhasil diupdate";
