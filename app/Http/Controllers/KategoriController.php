@@ -94,7 +94,7 @@ class KategoriController extends Controller
         return response()->json($data, Response::HTTP_OK);
         } else {
             $data['success'] = false;
-            $data['message'] = "Kategori tidak ditemukan";
+            $data['message'] = "Kategori gagal diupdate";
             return response()->json($data, Response::HTTP_NOT_FOUND);
         }
     }
