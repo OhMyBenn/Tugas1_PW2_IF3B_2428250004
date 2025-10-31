@@ -80,7 +80,7 @@ class KategoriController extends Controller
     public function update(Request $request, Kategori $kategori, $id)
     {
     // Validasi input dari request
-        $validatedData = $request->validate([
+        $validate = $request->validate([
             'nama' => 'required',
             'kode' => 'required',
         ]);
