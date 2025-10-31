@@ -77,7 +77,7 @@ class KategoriController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kategori $kategori, $id)
+    public function update(Request $request, $id)
     {
     // Validasi input dari request
         $validate = $request->validate([
