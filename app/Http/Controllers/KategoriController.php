@@ -55,7 +55,7 @@ class KategoriController extends Controller
 
     if ($kategori) {
         $data['success'] = true;
-        $data['message'] = " Detail data kategori";
+        $data['message'] = "Detail data kategori";
         $data['data'] = $kategori;
         return response()->json($data, 200);
     } else {
@@ -81,7 +81,7 @@ class KategoriController extends Controller
     {
     // Validasi input dari request
         $validate = $request->validate([
-            'nama' => 'required',
+            'nama' => 'required|unique:kategoris,nama',
             'kode' => 'required',
         ]);
 
