@@ -86,8 +86,6 @@ class ProdukController extends Controller
         $validate = $request->validate(
             [
             'nama'        => 'required|unique:produks,nama,'.$id,
-            'kode'        => 'required',
-            'kategori_id' => 'required|exists:kategoris,id',
             ]
         );
 
