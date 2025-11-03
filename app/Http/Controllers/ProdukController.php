@@ -124,4 +124,11 @@ class ProdukController extends Controller
     }
 }
 
+    public function getByKategori($id)
+    {
+        $produk = Produk::where('kategori_id', $id)->get();
+        return response()->json($produk);
+    }
+
+
 }

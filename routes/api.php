@@ -24,6 +24,8 @@ Route::patch('/produk/{id}', [ProdukController::class, 'update']);
 Route::get('/produk/{id}', [ProdukController::class, 'show']);
 Route::delete('/produk/{id}', [ProdukController::class, 'destroy']);
 
+Route::get('/kategori/{id}/produk', [ProdukController::class, 'getByKategori']);
+
 Route::post('/register', [AuthController::class,'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
